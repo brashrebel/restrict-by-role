@@ -5,7 +5,7 @@ $def_message = '<h3>This content is restricted. Please <a href="'.$site_url.'">l
 	extract(shortcode_atts(array(
     'role' => '',
     'message'   => $def_message,
-    'privilege' => ''
+    'privilege' => '',
     ), $atts));
 if ('subscriber' == $role OR 'Subscriber' == $role) {
 // For subscribers
@@ -42,9 +42,11 @@ if ('subscriber' == $role OR 'Subscriber' == $role) {
 	} else {
 		return $content;
 	}
-} elseif (!empty($privilege) && !current_user_can($privilege)) {
+} elseif (!empty($privilege)) {
 // Allow privelege parameter for more literal restrictions
-		return "<div class='rbr'>".$message."</div>";
+	if (current_user_can($privilege)) {
+			return $content;
+		} else { return "<div class='rbr'>".$message."</div>"; }
 } else {
 // Just display the content if someone enters an invalid user role.
 	return $content;
