@@ -53,4 +53,3 @@ if ('subscriber' == $role OR 'Subscriber' == $role) {
 }
 }
 add_shortcode( 'rbr', 'rbr' );
-?>

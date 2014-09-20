@@ -15,4 +15,3 @@ function rbr_css() {
 	</style>";
 }
 add_action( 'wp_head', 'rbr_css' );
-?>
